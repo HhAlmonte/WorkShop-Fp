@@ -1,0 +1,28 @@
+<mat-nav-list>
+  <div class="logo py-4">
+    <a href="dashboard">
+      <img src="../../../../../assets/images/logo.png" alt="logo" />
+    </a>
+  </div>
+  <mat-divider></mat-divider>
+  <button
+    mat-list-item
+    routerLinkActive="list-item-active"
+    (click)="goto('dashboard/home')"
+  >
+    <mat-icon>home</mat-icon> Home
+  </button>
+
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="mt-2">MODULES</h2>
+
+  <div *ngFor="let module of modules">
+    <button
+      mat-list-item
+      routerLinkActive="list-item-active"
+      (click)="goto(module.route)"
+    >
+      <mat-icon>{{ module.icon }}</mat-icon> {{ module.name }}
+    </button>
+  </div>
+</mat-nav-list>
