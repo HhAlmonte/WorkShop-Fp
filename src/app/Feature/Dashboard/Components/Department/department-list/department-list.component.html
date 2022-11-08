@@ -1,1 +1,66 @@
-<p>department-list works!</p>
+<app-page title="Deparments">
+  <button type="button" class="btn">Add</button>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active">
+      <table class="table table-hover table-responsive-md">
+        <thead class="thead">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let department of departments">
+          <tr>
+            <th scope="row">{{ department.id }}</th>
+            <td>{{ department.name }}</td>
+            <td>
+              <i class="mr" style="cursor: pointer"
+                ><mat-icon>edit</mat-icon></i
+              >
+              <i style="cursor: pointer"><mat-icon>delete</mat-icon></i>
+            </td>
+            <td>
+              <a
+                data-bs-toggle="collapse"
+                href="#multiCollapseExample1"
+                role="button"
+              >
+                <i
+                  style="cursor: pointer"
+                  ><mat-icon>keyboard_arrow_down</mat-icon></i
+                >
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">
+            <div *ngIf="open" class="row">
+              <div class="col">
+                <label for="name">Office:</label>
+                <p class="form-control">{{department.office.name}}</p>
+              </div>
+              <div class="col">
+                <label for="name">Boss:</label>
+                <p class="form-control">{{department.boss.name}} {{department.boss.lastName}}</p>
+              </div>
+              <div class="col">
+                <label for="name">Employess:</label>
+                <table class="table table-hover table-responsive-md">
+                  <!-- <ul *ngFor="let employee of department.departmentEmployees">
+                    <li>
+                      {{ employee.employeeId }}
+                    </li>
+                  </ul> -->
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-page>

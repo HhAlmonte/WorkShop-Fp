@@ -1,1 +1,34 @@
-<p>department-employee-list works!</p>
+<app-page title="Deparments Employees">
+  <button type="button" class="btn">Add</button>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active">
+      <table class="table table-hover table-responsive-md">
+        <thead class="thead">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let department of departments">
+          <tr>
+            <th scope="row">{{ department.id }}</th>
+            <td>{{ department.department.name }}</td>
+            <td>
+              <i class="mr" style="cursor: pointer"
+                ><mat-icon>edit</mat-icon></i
+              >
+              <i (click)="deleteDepartmentEmployee(department.id)" style="cursor: pointer"><mat-icon>delete</mat-icon></i>
+            </td>
+            <td>
+              <a>
+                <i style="cursor: pointer"
+                  ><mat-icon>keyboard_arrow_right</mat-icon></i
+                >
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-page>

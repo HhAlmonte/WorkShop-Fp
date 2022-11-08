@@ -27,6 +27,14 @@ button{
 
 .user {
   font-size: 14px;
+  background-color: #2c3344;
+  color: #fff;;
+  border-radius: 8px;
+
+  &:hover{
+    cursor: pointer;
+    background-color: #0e101a;
+  }
 }
 
 .user-image {
@@ -44,4 +52,8 @@ button{
   .mat-menu-content{
     width: 160px;
   }
+}
+
+.white-icon{
+  color: #fff
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OfficeRoutingModule } from './office-routing.module';
 import { OfficeListComponent } from './office-list/office-list.component';
+import { SharedModule } from 'src/app/Shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { OfficeListComponent } from './office-list/office-list.component';
   ],
   imports: [
     CommonModule,
-    OfficeRoutingModule
+    OfficeRoutingModule,
+    SharedModule
   ]
 })
 export class OfficeModule { }
