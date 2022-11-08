@@ -15,7 +15,7 @@
             <th scope="row">{{business.id}}</th>
             <td>{{business.name}}</td>
             <td>
-              <i class="mr" style="cursor:pointer;"><mat-icon>edit</mat-icon></i>
+              <i (click)="openDialogEdit(business)" class="mr" style="cursor:pointer;"><mat-icon>edit</mat-icon></i>
               <i (click)="deleteBusiness(business.id)" style="cursor:pointer;"><mat-icon>delete</mat-icon></i>
             </td>
             <td>

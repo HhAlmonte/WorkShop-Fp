@@ -1,5 +1,5 @@
 <app-page title="Deparments Employees">
-  <button type="button" class="btn">Add</button>
+  <button (click)="openDialogCreate()" type="button" class="btn">Add</button>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active">
       <table class="table table-hover table-responsive-md">
@@ -7,17 +7,26 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
+            <th scope="col">Employee</th>
           </tr>
         </thead>
         <tbody *ngFor="let department of departments">
           <tr>
             <th scope="row">{{ department.id }}</th>
             <td>{{ department.department.name }}</td>
+            <td>{{ department.employee.name }} {{department.employee.lastname}}</td>
             <td>
-              <i class="mr" style="cursor: pointer"
+              <i
+                (click)="openDialogEdit(department)"
+                class="mr"
+                style="cursor: pointer"
                 ><mat-icon>edit</mat-icon></i
               >
-              <i (click)="deleteDepartmentEmployee(department.id)" style="cursor: pointer"><mat-icon>delete</mat-icon></i>
+              <i
+                (click)="deleteDepartmentEmployee(department.id)"
+                style="cursor: pointer"
+                ><mat-icon>delete</mat-icon></i
+              >
             </td>
             <td>
               <a>

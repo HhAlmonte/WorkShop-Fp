@@ -25,9 +25,9 @@ export class BaseService<T extends Base> {
     return this.http.post(`${environment.baseUrl}${this.controller}`, entity);
   }
 
-  put(entity: T) {
+  put(entity: T, id: any) {
     return this.http.put(
-      `${environment.baseUrl}${this.controller}/${entity.id}`,
+      `${environment.baseUrl}${this.controller}/${id}`,
       entity
     );
   }

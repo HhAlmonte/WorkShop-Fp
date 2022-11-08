@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserDto } from 'src/app/Core/Models/Dtos/userDto.models';
 import { LoginService } from 'src/app/Core/Services/Auth/login.service';
+import { SweetAlertService } from 'src/app/Miscelaneo/sweetalert.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,8 +13,13 @@ import { LoginService } from 'src/app/Core/Services/Auth/login.service';
 export class SignInComponent implements OnInit {
   public form: FormGroup = new FormGroup([]);
   public user!: UserDto;
+  public loading!: boolean;
 
-  constructor(private _authService: LoginService, private router: Router) {
+  constructor(
+    private _authService: LoginService,
+    private router: Router,
+    private sweetalertService: SweetAlertService
+  ) {
     const token = this._authService.getToken();
     if (token) {
       this.router.navigate(['dashboard']);
@@ -29,16 +35,17 @@ export class SignInComponent implements OnInit {
       ...this.form.value,
     } as UserDto;
 
+    this.loading = true;
+
     this._authService.post(user).subscribe(
       (data) => {
         this.user = data as any;
-
         this._authService.setToken(this.user.data.access_token);
-
         this.router.navigate(['dashboard']);
       },
-      (err) => {
-        console.log(err.error);
+      () => {
+        this.loading = false;
+        this.sweetalertService.opensweetalerterror('Usuario o contraseña incorrectos');
       }
     );
   }

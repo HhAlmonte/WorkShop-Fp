@@ -8,7 +8,6 @@ import { SharedModule } from 'src/app/Shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     SignInComponent,

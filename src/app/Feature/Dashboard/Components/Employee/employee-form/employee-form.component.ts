@@ -5,6 +5,7 @@ import { DepartmentDto } from 'src/app/Core/Models/Dtos/DeparmentDto.models';
 import { EmployeeDto } from 'src/app/Core/Models/Dtos/employeeDto.models';
 import { DeparmentService } from 'src/app/Core/Services/deparment.service';
 import { EmployeeService } from 'src/app/Core/Services/employee.service';
+import { SweetAlertService } from 'src/app/Miscelaneo/sweetalert.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -19,6 +20,7 @@ export class EmployeeFormComponent implements OnInit {
     private _employeeService: EmployeeService,
     private _departmentService: DeparmentService,
     private _dialogRef: MatDialogRef<EmployeeFormComponent>,
+    private _sweetAlertService: SweetAlertService,
     @Inject(MAT_DIALOG_DATA) public data: EmployeeDto
   ) {}
 
@@ -33,7 +35,7 @@ export class EmployeeFormComponent implements OnInit {
       ...this.form.value,
     } as EmployeeDto;
 
-    if (this.data.id == '') {
+    if (this.data) {
       this.update(employee);
     } else {
       this.create(employee);
@@ -59,14 +61,18 @@ export class EmployeeFormComponent implements OnInit {
   private setData() {
     if (this.data) {
       this.form.patchValue({
-        ...this.data
+        ...this.data,
       });
     }
   }
 
   private update(employee: EmployeeDto) {
     if (this.form.valid) {
-      this._employeeService.put(employee).subscribe(() => {
+      let id: string = this.data.id;
+      this._employeeService.put(employee, id).subscribe(() => {
+        this._sweetAlertService.opensweetalertsuccess(
+          'Empleado actualizado con exito'
+        );
         this._dialogRef.close();
       });
     }
@@ -75,6 +81,9 @@ export class EmployeeFormComponent implements OnInit {
   private create(employee: EmployeeDto) {
     if (this.form.valid) {
       this._employeeService.post(employee).subscribe(() => {
+        this._sweetAlertService.opensweetalertsuccess(
+          'Empleado creado con exito'
+        );
         this._dialogRef.close();
       });
     }

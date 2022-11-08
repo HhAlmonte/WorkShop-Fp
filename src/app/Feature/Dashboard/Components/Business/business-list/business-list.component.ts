@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BusinessDto } from 'src/app/Core/Models/Dtos/businessDto.models';
 import { BusinessService } from 'src/app/Core/Services/business.service';
+import { SweetAlertService } from 'src/app/Miscelaneo/sweetalert.service';
 import { BusinessFormComponent } from '../business-form/business-form.component';
 
 @Component({
@@ -14,7 +15,8 @@ export class BusinessListComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private _businessService: BusinessService
+    private _businessService: BusinessService,
+    private sweeralertservice: SweetAlertService
   ) {}
 
   ngOnInit(): void {
@@ -28,15 +30,33 @@ export class BusinessListComponent implements OnInit {
   }
 
   deleteBusiness(id: string) {
-    this._businessService.delete(id).subscribe(() => {
+    this.sweeralertservice
+      .opensweetalertdelete('¿Estas seguro de eliminar esta empresa?')
+      .subscribe((result) => {
+        if (result) {
+          this._businessService.delete(id).subscribe(() => {
+            this.sweeralertservice.opensweetalertsuccess('Empresa eliminada');
+            this.getBusiness();
+          });
+        }
+      });
+  }
+
+  openDialog() {
+    this.dialog.open(BusinessFormComponent);
+
+    this.dialog.afterAllClosed.subscribe(() => {
       this.getBusiness();
     });
   }
 
-  openDialog() {
+  openDialogEdit(business: BusinessDto) {
     this.dialog.open(BusinessFormComponent, {
-      width: '250px',
-      data: { name: 'test' },
+      data: business,
+    });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.getBusiness();
     });
   }
 }

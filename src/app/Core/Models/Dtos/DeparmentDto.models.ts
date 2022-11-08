@@ -14,3 +14,4 @@ export interface DepartmentDto extends Base {
     }
   ];
 }
+

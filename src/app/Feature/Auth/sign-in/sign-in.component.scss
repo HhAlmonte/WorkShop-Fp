@@ -53,6 +53,15 @@
   border-bottom: 1px solid #ccc;
 }
 
+// poner el spinner en el centro y poner de negro todo el fondo
+mat-spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
 #icon-view-pass2{
   position: relative;
   top: 6px;

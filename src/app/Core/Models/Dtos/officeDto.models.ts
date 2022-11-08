@@ -4,9 +4,11 @@ import { BusinessDto } from "./businessDto.models";
 import { DepartmentDto } from "./DeparmentDto.models";
 
 export interface OfficeDto extends Base{
-  name: string,
-  description: string,
+  name: string;
+  description: string;
   adress: AddressDto;
-  business: BusinessDto,
-  departments: DepartmentDto[]
+  business: BusinessDto;
+  departments: DepartmentDto[];
+  adressId: string;
+  businessId: string;
 }

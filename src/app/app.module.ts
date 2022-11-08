@@ -17,11 +17,11 @@ import { AddTokenInterceptor } from './Core/Helpers/add-token.interceptor';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AddTokenInterceptor,
-    multi: true
-  }],
+  // providers: [{
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: AddTokenInterceptor,
+  //   multi: true
+  // }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

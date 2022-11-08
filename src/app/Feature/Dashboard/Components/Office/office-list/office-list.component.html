@@ -1,5 +1,5 @@
 <app-page title="Offices">
-  <button type="button" class="btn">Add</button>
+  <button (click)="openDialogCreate()" type="button" class="btn">Add</button>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active">
       <table class="table table-hover table-responsive-md">
@@ -18,7 +18,7 @@
             <td>{{ office.description }}</td>
             <td>{{ office.business.name }}</td>
             <td>
-              <i class="mr" style="cursor: pointer"
+              <i (click)="openDialogEdit(office)" class="mr" style="cursor: pointer"
                 ><mat-icon>edit</mat-icon></i
               >
               <i (click)="deleteOffice(office.id)" style="cursor: pointer"
